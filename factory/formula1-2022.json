@@ -1,0 +1,9 @@
+{
+	"name": "formula1-2022",
+	"location": "francecentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9b4f5d07-899c-452f-97cc-74d13bd124df",
+		"tenantId": "9e3b4598-19ce-44a2-8ff3-457f33278a2c"
+	}
+}
