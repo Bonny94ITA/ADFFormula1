@@ -1,0 +1,56 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Nome Data Factory",
+			"defaultValue": "formula1-2022"
+		},
+		"ls_formula1dl_storage_accountKey": {
+			"type": "secureString",
+			"metadata": "Stringa sicura per 'accountKey' di 'ls_formula1dl_storage'"
+		},
+		"ls_formula1dl_storage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://formula1dl2022.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI dell'account di archiviazione contenente i modelli di ARM collegati"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Token di firma di accesso condiviso per l'account di archiviazione contenente i modelli di ARM collegati"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "formula1-2022_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_formula1dl_storage_accountKey": {
+						"value": "[parameters('ls_formula1dl_storage_accountKey')]"
+					},
+					"ls_formula1dl_storage_properties_typeProperties_url": {
+						"value": "[parameters('ls_formula1dl_storage_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
